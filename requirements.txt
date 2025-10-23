@@ -1,0 +1,11 @@
+langchain
+langchain-community
+langchain-openai
+tiktoken
+pypdf
+chromadb
+sentence-transformers
+streamlit
+python-dotenv
+unidecode
+regex
