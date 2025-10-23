@@ -4,7 +4,7 @@ from unidecode import unidecode
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter, SentenceTransformersTokenTextSplitter
 from langchain_community.vectorstores import Chroma
-from langchain_openai import OpenAIEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from settings import DATA_DIR, DB_A_DIR, DB_B_DIR, EMBED_MODEL, CHUNK_SIZE, CHUNK_OVERLAP, TOKENS_PER_CHUNK, TOKENS_OVERLAP
 
 def limpiar_texto(txt: str) -> str:
@@ -49,7 +49,7 @@ def main():
     chunks_B = splitter_B.split_documents(docs)
     print(f"[B] Chunks creados: {len(chunks_B)}")
 
-    emb = OpenAIEmbeddings(model=EMBED_MODEL)
+    emb = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
     if os.path.exists(DB_A_DIR):
         print(f"Limpiando índice A: {DB_A_DIR}")

@@ -1,8 +1,17 @@
 from typing import Literal
-from langchain.memory import ConversationBufferWindowMemory
-from langchain_openai import ChatOpenAI
-from .rag_tools import rag_a_tool, rag_b_tool, web_search_tool
-from .settings import CHAT_MODEL
+from langchain_community.chat_models import ChatOllama
+
+# memoria (funciona en todas las versiones)
+try:
+    from langchain.memory import ConversationBufferWindowMemory
+except ImportError:
+    from langchain_community.chat_message_histories import ChatMessageHistory as ConversationBufferWindowMemory
+
+from rag_tools import rag_a_tool, rag_b_tool, web_search_tool
+from settings import CHAT_MODEL
+
+
+
 
 PROFILE = """
 Nombre: TicoRAG
@@ -17,16 +26,25 @@ Restricciones:
 
 class Agent:
     def __init__(self, window_k: int = 6, model: str = CHAT_MODEL):
-        self.llm = ChatOpenAI(model=model, temperature=0)
+        self.llm = ChatOllama(model="llama3", temperature=0)
         self.memory = ConversationBufferWindowMemory(k=window_k, return_messages=True)
 
-    def decide_and_answer(self, user_query: str, rag_mode: Literal["A","B"]="A", allow_web: bool=False) -> str:
+    def decide_and_answer(self, user_query: str, rag_mode: Literal["A", "B"] = "A", allow_web: bool = False) -> str:
         text_l = user_query.lower()
         wants_web = any(w in text_l for w in ["busca en la web", "web", "internet", "google"])
+
         if allow_web and wants_web:
             result = web_search_tool(user_query)
         else:
             result = rag_a_tool(user_query) if rag_mode == "A" else rag_b_tool(user_query)
 
-        self.memory.save_context({"human": user_query}, {"ai": result})
+        # compatibilidad con versiones nuevas de LangChain
+        try:
+            self.memory.save_context({"human": user_query}, {"ai": result})
+        except AttributeError:
+            if hasattr(self.memory, "chat_memory"):
+                self.memory.chat_memory.add_message({"role": "human", "content": user_query})
+                self.memory.chat_memory.add_message({"role": "ai", "content": result})
+
         return result
+
