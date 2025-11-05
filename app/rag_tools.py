@@ -79,6 +79,29 @@ def rag_b_tool(query: str, k: int = 4) -> str:
     return _answer_with_retriever(query, retriever)
 
 def web_search_tool(query: str) -> str:
-    # Deshabilitado por política; actívalo solo si el profe lo permite.
-    return ("(Búsqueda web deshabilitada por defecto; habilítala explícitamente "
-            "si tu enunciado lo permite y tienes un proveedor aprobado).")
+    """
+    Realiza una búsqueda web y devuelve resultados formateados.
+    """
+    try:
+        from langchain_community.tools import DuckDuckGoSearchResults
+        search = DuckDuckGoSearchResults(max_results=5)
+        raw = search.run(query)
+
+        # parsear resultados si vienen como texto plano con 'title' y 'link'
+        results = []
+        for item in raw.split("title:"):
+            if "link:" in item:
+                title_part = item.split("link:")[0].strip()
+                link_part = item.split("link:")[1].split(", snippet:")[0].strip()
+                snippet_part = item.split("snippet:")[-1].strip()
+                results.append(f"🔹 **{title_part}**\n{snippet_part}\n🔗 {link_part}\n")
+
+        if not results:
+            return "(No se encontraron resultados legibles en la web.)"
+
+        formatted = "\n".join(results[:5])
+        return f"**Resultados web (resumen):**\n\n{formatted}"
+
+    except Exception as e:
+        return f"(Error al realizar la búsqueda web: {e})"
+

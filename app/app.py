@@ -5,8 +5,8 @@ from agent import Agent
 
 load_dotenv()
 
-st.set_page_config(page_title="Andrey GPT", page_icon="🤖", layout="wide")
-st.title("Andrey GPT – Agente (RAG A/B) con memoria")
+st.set_page_config(page_title="GPTEC", page_icon="🤖", layout="wide")
+st.title("GPTEC – Agente (RAG A/B) con memoria")
 
 with st.sidebar:
     st.header("Opciones")

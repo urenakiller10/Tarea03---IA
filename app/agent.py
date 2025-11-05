@@ -29,16 +29,18 @@ class Agent:
         self.llm = ChatOllama(model="llama3", temperature=0)
         self.memory = ConversationBufferWindowMemory(k=window_k, return_messages=True)
 
-    def decide_and_answer(self, user_query: str, rag_mode: Literal["A", "B"] = "A", allow_web: bool = False) -> str:
+    def decide_and_answer(self, user_query: str, rag_mode: Literal["A", "B"] = "A", allow_web: bool = True) -> str:
         text_l = user_query.lower()
-        wants_web = any(w in text_l for w in ["busca en la web", "web", "internet", "google"])
+        wants_web = any(w in text_l for w in ["busca en la web", "buscar en la web", "web", "internet", "google"])
 
-        if allow_web and wants_web:
+        if wants_web and not allow_web:
+            result = "(La búsqueda web está deshabilitada actualmente. Actívala en las opciones para permitir búsquedas en línea.)"
+        elif allow_web and wants_web:
             result = web_search_tool(user_query)
         else:
             result = rag_a_tool(user_query) if rag_mode == "A" else rag_b_tool(user_query)
 
-        # compatibilidad con versiones nuevas de LangChain
+        # guardar en memoria
         try:
             self.memory.save_context({"human": user_query}, {"ai": result})
         except AttributeError:
@@ -47,4 +49,6 @@ class Agent:
                 self.memory.chat_memory.add_message({"role": "ai", "content": result})
 
         return result
+
+
 
