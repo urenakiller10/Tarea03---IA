@@ -1,11 +1,7 @@
 from typing import Literal
-from langchain_community.chat_models import ChatOllama
-
-# memoria (funciona en todas las versiones)
-try:
-    from langchain.memory import ConversationBufferWindowMemory
-except ImportError:
-    from langchain_community.chat_message_histories import ChatMessageHistory as ConversationBufferWindowMemory
+from langchain_openai import ChatOpenAI
+from langchain_core.chat_history import BaseChatMessageHistory
+from langchain_core.messages import HumanMessage, AIMessage
 
 from rag_tools import rag_a_tool, rag_b_tool, web_search_tool
 from settings import CHAT_MODEL
@@ -24,10 +20,39 @@ Restricciones:
 - Memoria acotada a una ventana de mensajes.
 """
 
+class SimpleMemory:
+    """Memoria conversacional simple con ventana deslizante."""
+    def __init__(self, window_k: int = 6):
+        self.messages = []
+        self.window_k = window_k
+    
+    def add_user_message(self, content: str):
+        self.messages.append(HumanMessage(content=content))
+        self._trim()
+    
+    def add_ai_message(self, content: str):
+        self.messages.append(AIMessage(content=content))
+        self._trim()
+    
+    def _trim(self):
+        """Mantiene solo los últimos window_k mensajes."""
+        if len(self.messages) > self.window_k:
+            self.messages = self.messages[-self.window_k:]
+    
+    def get_context(self) -> str:
+        """Devuelve el contexto conversacional como string."""
+        context = []
+        for msg in self.messages:
+            if isinstance(msg, HumanMessage):
+                context.append(f"Usuario: {msg.content}")
+            elif isinstance(msg, AIMessage):
+                context.append(f"Asistente: {msg.content}")
+        return "\n".join(context)
+
 class Agent:
     def __init__(self, window_k: int = 6, model: str = CHAT_MODEL):
-        self.llm = ChatOllama(model="llama3", temperature=0)
-        self.memory = ConversationBufferWindowMemory(k=window_k, return_messages=True)
+        self.llm = ChatOpenAI(model=model, temperature=0)
+        self.memory = SimpleMemory(window_k=window_k)
 
     def decide_and_answer(self, user_query: str, rag_mode: Literal["A", "B"] = "A", allow_web: bool = True) -> str:
         text_l = user_query.lower()
@@ -38,15 +63,18 @@ class Agent:
         elif allow_web and wants_web:
             result = web_search_tool(user_query)
         else:
-            result = rag_a_tool(user_query) if rag_mode == "A" else rag_b_tool(user_query)
+            # Agregar contexto conversacional a la consulta
+            context = self.memory.get_context()
+            if context:
+                enriched_query = f"Contexto previo:\n{context}\n\nPregunta actual: {user_query}"
+            else:
+                enriched_query = user_query
+            
+            result = rag_a_tool(enriched_query) if rag_mode == "A" else rag_b_tool(enriched_query)
 
-        # guardar en memoria
-        try:
-            self.memory.save_context({"human": user_query}, {"ai": result})
-        except AttributeError:
-            if hasattr(self.memory, "chat_memory"):
-                self.memory.chat_memory.add_message({"role": "human", "content": user_query})
-                self.memory.chat_memory.add_message({"role": "ai", "content": result})
+        # Guardar en memoria
+        self.memory.add_user_message(user_query)
+        self.memory.add_ai_message(result)
 
         return result
 

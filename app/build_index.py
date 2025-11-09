@@ -4,7 +4,7 @@ from unidecode import unidecode
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter, SentenceTransformersTokenTextSplitter
 from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_openai import OpenAIEmbeddings  # ← CAMBIO
 from settings import DATA_DIR, DB_A_DIR, DB_B_DIR, EMBED_MODEL, CHUNK_SIZE, CHUNK_OVERLAP, TOKENS_PER_CHUNK, TOKENS_OVERLAP
 
 def limpiar_texto(txt: str) -> str:
@@ -24,6 +24,8 @@ def cargar_docs():
             d.metadata = {
                 "source": os.path.basename(pdf_path),
                 "page": d.metadata.get("page", None),
+                "fecha": "2025-10-XX",  # Agregar si es posible extraer del nombre
+                "autor": "Estudiante",   # Agregar si está disponible
             }
             docs.append(d)
     return docs
@@ -49,7 +51,8 @@ def main():
     chunks_B = splitter_B.split_documents(docs)
     print(f"[B] Chunks creados: {len(chunks_B)}")
 
-    emb = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    # ← CAMBIO: usar OpenAI embeddings
+    emb = OpenAIEmbeddings(model=EMBED_MODEL)
 
     if os.path.exists(DB_A_DIR):
         print(f"Limpiando índice A: {DB_A_DIR}")
