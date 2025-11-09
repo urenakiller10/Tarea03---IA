@@ -1,4 +1,56 @@
+# Datos sensibles
 data/
-env/
-__pycache__/   
 .env
+.env.local
+.env.*.local
+*.key
+
+# Entornos virtuales
+env/
+venv/
+ENV/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Bases de datos vectoriales (ChromaDB)
+app/chroma_ragA/
+app/chroma_ragB/
+*.db
+*.sqlite3
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos temporales de LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+
+# Archivos de prueba
+test_*.py
+temp/
+tmp/
