@@ -1,0 +1,1202 @@
+[
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-09T22:21:39.313326",
+    "agent_mode": "A",
+    "question_id": 1,
+    "question_text": "¿Qué es un kernel en aprendizaje automático?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 2893.3892250061035,
+    "t_generation_ms": 1124.5582103729248,
+    "t_total_ms": 4017.9474353790283,
+    "tokens_in": 12,
+    "tokens_out": 102,
+    "retrieved_docs": [
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1,
+        "score": 0.0
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 3,
+        "score": 0.0
+      },
+      {
+        "file": "2_SEMANA_AI_20250812_1.pdf",
+        "page": 3,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 3
+      },
+      {
+        "file": "2_SEMANA_AI_20250812_1.pdf",
+        "page": 3
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "El fragmento no proporciona información sobre qué es un kernel en aprendizaje automático.\n\n**Referencias:**\n[1] 10_SEMANA_AI_20251009_1.pdf, p.1 (Autor: Estudiante)\n[2] 4_Semana_AI_20250828_1.pdf, p.3 (Autor: Estudiante)\n[3] 2_SEMANA_AI_20250812_1.pdf, p.3 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-09T22:21:41.474705",
+    "agent_mode": "B",
+    "question_id": 2,
+    "question_text": "¿Qué es un kernel en aprendizaje automático?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 319.21911239624023,
+    "t_generation_ms": 1234.8275184631348,
+    "t_total_ms": 1554.046630859375,
+    "tokens_in": 12,
+    "tokens_out": 148,
+    "retrieved_docs": [
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1,
+        "score": 0.0
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 3,
+        "score": 0.0
+      },
+      {
+        "file": "2_Semana_AI_20250814_1.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 3
+      },
+      {
+        "file": "2_Semana_AI_20250814_1.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "El fragmento menciona que un kernel en aprendizaje automático es una matriz bidimensional de números que transforma una imagen al deslizarse sobre ella, produciendo una imagen de salida. También se menciona la aplicación de filtros como el gaussian kernel para reducir el ruido en una imagen.\n\n**Referencias:**\n[1] 10_SEMANA_AI_20251009_1.pdf, p.1 (Autor: Estudiante)\n[2] 4_Semana_AI_20250828_1.pdf, p.3 (Autor: Estudiante)\n[3] 2_Semana_AI_20250814_1.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:29:46.872667",
+    "agent_mode": "A",
+    "question_id": 3,
+    "question_text": "¿Cuál es la fórmula de la similitud de coseno?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 2858.2589626312256,
+    "t_generation_ms": 1278.524398803711,
+    "t_total_ms": 4136.7833614349365,
+    "tokens_in": 18,
+    "tokens_out": 105,
+    "retrieved_docs": [
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1,
+        "score": 0.0
+      },
+      {
+        "file": "11_Semana_AI_20251014_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 2,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1
+      },
+      {
+        "file": "11_Semana_AI_20251014_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 2
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "El fragmento no proporciona información sobre la fórmula de la similitud de coseno.\n\n**Referencias:**\n[1] 10_SEMANA_AI_20251009_1.pdf, p.1 (Autor: Estudiante)\n[2] 11_Semana_AI_20251014_1.pdf, p.0 (Autor: Estudiante)\n[3] 10_SEMANA_AI_20251009_1.pdf, p.2 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:29:49.644248",
+    "agent_mode": "B",
+    "question_id": 4,
+    "question_text": "¿Cuál es la fórmula de la similitud de coseno?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 1050.6501197814941,
+    "t_generation_ms": 1178.3349514007568,
+    "t_total_ms": 2228.985071182251,
+    "tokens_in": 18,
+    "tokens_out": 168,
+    "retrieved_docs": [
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1,
+        "score": 0.0
+      },
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 2,
+        "score": 0.0
+      },
+      {
+        "file": "11_Semana_AI_20251014_2.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1
+      },
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 2
+      },
+      {
+        "file": "11_Semana_AI_20251014_2.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "El fragmento menciona que un filtro o kernel es una matriz bidimensional de números que se desliza sobre una imagen para producir una imagen de salida. También se menciona el cálculo de dimensiones con respecto al tamaño del kernel, el padding y la cantidad de pasos. Además, se hace referencia a la aplicación de filtros en una convolución para extraer información relevante de una imagen.\n\n**Referencias:**\n[1] 10_SEMANA_AI_20251009_1.pdf, p.1 (Autor: Estudiante)\n[2] 10_SEMANA_AI_20251009_1.pdf, p.2 (Autor: Estudiante)\n[3] 11_Semana_AI_20251014_2.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:30:04.107880",
+    "agent_mode": "A",
+    "question_id": 5,
+    "question_text": "¿Cómo se calcula la distancia euclidiana entre dos vectores?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 1073.4095573425293,
+    "t_generation_ms": 3168.400526046753,
+    "t_total_ms": 4241.810083389282,
+    "tokens_in": 15,
+    "tokens_out": 182,
+    "retrieved_docs": [
+      {
+        "file": "11_Semana_AI_20251014_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1,
+        "score": 0.0
+      },
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 2,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "11_Semana_AI_20251014_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1
+      },
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 2
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "La distancia euclidiana entre dos vectores se calcula utilizando la fórmula: \\( \\sqrt{\\sum_{i=1}^{n} (x_i - y_i)^2} \\), donde \\( x_i \\) y \\( y_i \\) son los elementos de los dos vectores en la posición \\( i \\) y \\( n \\) es la longitud de los vectores.\n\n**Referencias:**\nNo aparece en los fragmentos mencionados.\n\n**Referencias:**\n[1] 11_Semana_AI_20251014_1.pdf, p.0 (Autor: Estudiante)\n[2] 10_SEMANA_AI_20251009_1.pdf, p.1 (Autor: Estudiante)\n[3] 10_SEMANA_AI_20251009_1.pdf, p.2 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:30:05.938663",
+    "agent_mode": "B",
+    "question_id": 6,
+    "question_text": "¿Cómo se calcula la distancia euclidiana entre dos vectores?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 267.47846603393555,
+    "t_generation_ms": 1007.0207118988037,
+    "t_total_ms": 1274.4991779327393,
+    "tokens_in": 15,
+    "tokens_out": 166,
+    "retrieved_docs": [
+      {
+        "file": "12_Semana_AI_20251021_2.pdf",
+        "page": 1,
+        "score": 0.0
+      },
+      {
+        "file": "12_Semana_AI_20251021_2.pdf",
+        "page": 2,
+        "score": 0.0
+      },
+      {
+        "file": "12_SEMANA_AI_20251021_4.pdf",
+        "page": 2,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "12_Semana_AI_20251021_2.pdf",
+        "page": 1
+      },
+      {
+        "file": "12_Semana_AI_20251021_2.pdf",
+        "page": 2
+      },
+      {
+        "file": "12_SEMANA_AI_20251021_4.pdf",
+        "page": 2
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "La distancia euclidiana entre dos vectores se calcula utilizando la fórmula: \\( \\sqrt{\\sum_{i=1}^{n} (x_i - y_i)^2} \\), donde \\( x_i \\) y \\( y_i \\) son los elementos de los dos vectores en la posición \\( i \\) y \\( n \\) es la longitud de los vectores.\n\n**Referencias:**\n[1] 12_Semana_AI_20251021_2.pdf, p.1 (Autor: Estudiante)\n[2] 12_Semana_AI_20251021_2.pdf, p.2 (Autor: Estudiante)\n[3] 12_SEMANA_AI_20251021_4.pdf, p.2 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:30:14.433349",
+    "agent_mode": "A",
+    "question_id": 7,
+    "question_text": "Da la forma canónica de la regresión lineal (variables, parámetros y objetivo).",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 1259.3474388122559,
+    "t_generation_ms": 1603.604793548584,
+    "t_total_ms": 2862.95223236084,
+    "tokens_in": 21,
+    "tokens_out": 175,
+    "retrieved_docs": [
+      {
+        "file": "11_Semana_AI_20251014_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "4_Semana_AI_20250828_2.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "4_SEMANA_AI_20250826_2.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "11_Semana_AI_20251014_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "4_Semana_AI_20250828_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "4_SEMANA_AI_20250826_2.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "La forma canónica de la regresión lineal incluye variables como los coeficientes de las características (w) y el término independiente (b), los parámetros son los coeficientes w y b, y el objetivo es ajustar estos parámetros para minimizar la función de pérdida, como el Mean Square Error (MSE).\n\n**Referencias:**\nNo aparece en los fragmentos mencionados.\n\n**Referencias:**\n[1] 11_Semana_AI_20251014_1.pdf, p.0 (Autor: Estudiante)\n[2] 4_Semana_AI_20250828_2.pdf, p.0 (Autor: Estudiante)\n[3] 4_SEMANA_AI_20250826_2.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:30:16.410135",
+    "agent_mode": "B",
+    "question_id": 8,
+    "question_text": "Da la forma canónica de la regresión lineal (variables, parámetros y objetivo).",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 301.35464668273926,
+    "t_generation_ms": 1131.5340995788574,
+    "t_total_ms": 1432.8887462615967,
+    "tokens_in": 21,
+    "tokens_out": 159,
+    "retrieved_docs": [
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "4_Semana_AI_20250828_2.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "4_Semana_AI_20250828_2.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "4_Semana_AI_20250828_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "4_Semana_AI_20250828_2.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "La forma canónica de la regresión lineal incluye variables como los coeficientes de las características (w) y el término independiente (b), los parámetros son los coeficientes w y b, y el objetivo es ajustar estos parámetros para minimizar la función de pérdida, como el Mean Square Error (MSE).\n\n**Referencias:**\n[1] 4_Semana_AI_20250828_1.pdf, p.0 (Autor: Estudiante)\n[2] 4_Semana_AI_20250828_2.pdf, p.0 (Autor: Estudiante)\n[3] 4_Semana_AI_20250828_2.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:30:23.951746",
+    "agent_mode": "A",
+    "question_id": 9,
+    "question_text": "Explica brevemente descenso de gradiente y su objetivo.",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 300.65035820007324,
+    "t_generation_ms": 1345.9947109222412,
+    "t_total_ms": 1646.6450691223145,
+    "tokens_in": 14,
+    "tokens_out": 188,
+    "retrieved_docs": [
+      {
+        "file": "4_SEMANA_AI_20250826_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "5_Semana_AI_20250902_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "6_Semana_AI_20250911_2.pdf",
+        "page": 1,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "12_Semana_AI_20251021_2.pdf",
+        "page": 2
+      },
+      {
+        "file": "4_SEMANA_AI_20250826_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "5_Semana_AI_20250902_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "6_Semana_AI_20250911_2.pdf",
+        "page": 1
+      }
+    ],
+    "fidelity_binary": 0,
+    "citations_correct_ratio": 0.75,
+    "em_binary": 1,
+    "answer": "El descenso de gradiente es un método que permite optimizar la posición respecto a los parámetros w y b en el modelo de regresión lineal. Su objetivo es ajustar los valores de w y b de manera iterativa para minimizar la función de pérdida y encontrar el mínimo local que se ajuste a las necesidades del modelo.\n\n**Referencias:**\n[1] 12_Semana_AI_20251021_2.pdf, p.2 (Autor: Estudiante)\n\n**Referencias:**\n[1] 4_SEMANA_AI_20250826_1.pdf, p.0 (Autor: Estudiante)\n[2] 5_Semana_AI_20250902_1.pdf, p.0 (Autor: Estudiante)\n[3] 6_Semana_AI_20250911_2.pdf, p.1 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:30:26.277493",
+    "agent_mode": "B",
+    "question_id": 10,
+    "question_text": "Explica brevemente descenso de gradiente y su objetivo.",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 313.77673149108887,
+    "t_generation_ms": 1455.7569026947021,
+    "t_total_ms": 1769.533634185791,
+    "tokens_in": 14,
+    "tokens_out": 157,
+    "retrieved_docs": [
+      {
+        "file": "6_Semana_AI_20250911_2.pdf",
+        "page": 1,
+        "score": 0.0
+      },
+      {
+        "file": "6_Semana_AI_20250911_2.pdf",
+        "page": 2,
+        "score": 0.0
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 1,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "6_Semana_AI_20250911_2.pdf",
+        "page": 1
+      },
+      {
+        "file": "6_Semana_AI_20250911_2.pdf",
+        "page": 2
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 1
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "El descenso de gradiente es un método que permite optimizar la posición respecto a los parámetros w y b en el modelo de regresión lineal. Su objetivo es ajustar los valores de w y b de manera iterativa para minimizar la función de pérdida y encontrar el mínimo local que se ajuste a las necesidades del modelo.\n\n**Referencias:**\n[1] 6_Semana_AI_20250911_2.pdf, p.1 (Autor: Estudiante)\n[2] 6_Semana_AI_20250911_2.pdf, p.2 (Autor: Estudiante)\n[3] 4_Semana_AI_20250828_1.pdf, p.1 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:30:35.960589",
+    "agent_mode": "A",
+    "question_id": 11,
+    "question_text": "¿Qué es backpropagation y qué papel juega la regla de la cadena?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 318.44019889831543,
+    "t_generation_ms": 1159.468173980713,
+    "t_total_ms": 1477.9083728790283,
+    "tokens_in": 18,
+    "tokens_out": 97,
+    "retrieved_docs": [
+      {
+        "file": "5_Semana_AI_20250902_2.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "4_Semana_AI_20250828_2.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 3,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "5_Semana_AI_20250902_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "4_Semana_AI_20250828_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 3
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 0,
+    "answer": "La información solicitada no aparece en los fragmentos proporcionados.\n\n**Referencias:**\n[1] 5_Semana_AI_20250902_2.pdf, p.0 (Autor: Estudiante)\n[2] 4_Semana_AI_20250828_2.pdf, p.0 (Autor: Estudiante)\n[3] 4_Semana_AI_20250828_1.pdf, p.3 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:30:38.109259",
+    "agent_mode": "B",
+    "question_id": 12,
+    "question_text": "¿Qué es backpropagation y qué papel juega la regla de la cadena?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 430.44257164001465,
+    "t_generation_ms": 1167.6208972930908,
+    "t_total_ms": 1598.0634689331055,
+    "tokens_in": 18,
+    "tokens_out": 189,
+    "retrieved_docs": [
+      {
+        "file": "10_SEMANA_AI_20251007_1.pdf",
+        "page": 1,
+        "score": 0.0
+      },
+      {
+        "file": "10_SEMANA_AI_20251007_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "8_Semana_AI_20250925_1.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "5_Semana_AI_20250902_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "4_Semana_AI_20250828_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 3
+      },
+      {
+        "file": "10_SEMANA_AI_20251007_1.pdf",
+        "page": 1
+      },
+      {
+        "file": "10_SEMANA_AI_20251007_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "8_Semana_AI_20250925_1.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 0,
+    "citations_correct_ratio": 0.5,
+    "em_binary": 1,
+    "answer": "La información sobre backpropagation y la regla de la cadena no aparece en los fragmentos proporcionados.\n\n**Referencias:**\n[1] 5_Semana_AI_20250902_2.pdf, p.0 (Autor: Estudiante)\n[2] 4_Semana_AI_20250828_2.pdf, p.0 (Autor: Estudiante)\n[3] 4_Semana_AI_20250828_1.pdf, p.3 (Autor: Estudiante)\n\n**Referencias:**\n[1] 10_SEMANA_AI_20251007_1.pdf, p.1 (Autor: Estudiante)\n[2] 10_SEMANA_AI_20251007_1.pdf, p.0 (Autor: Estudiante)\n[3] 8_Semana_AI_20250925_1.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:30:47.424537",
+    "agent_mode": "A",
+    "question_id": 13,
+    "question_text": "¿Qué supuestos típicos se hacen en regresión lineal y por qué importan?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 404.10685539245605,
+    "t_generation_ms": 1136.0952854156494,
+    "t_total_ms": 1540.2021408081055,
+    "tokens_in": 21,
+    "tokens_out": 163,
+    "retrieved_docs": [
+      {
+        "file": "5_Semana_AI_20250902_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "5_Semana_AI_20250902_2.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 3,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "5_Semana_AI_20250902_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "5_Semana_AI_20250902_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 3
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "Los supuestos típicos en regresión lineal incluyen la linealidad de la relación entre predictores y la variable respuesta, la ausencia de datos atípicos y la no colinealidad de los datos. Estos supuestos son importantes porque afectan la validez y precisión de los resultados obtenidos a través del modelo de regresión lineal.\n\n**Referencias:**\n[1] 5_Semana_AI_20250902_1.pdf, p.0 (Autor: Estudiante)\n[2] 5_Semana_AI_20250902_2.pdf, p.0 (Autor: Estudiante)\n[3] 4_Semana_AI_20250828_1.pdf, p.3 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:30:49.163465",
+    "agent_mode": "B",
+    "question_id": 14,
+    "question_text": "¿Qué supuestos típicos se hacen en regresión lineal y por qué importan?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 240.93198776245117,
+    "t_generation_ms": 965.2347564697266,
+    "t_total_ms": 1206.1667442321777,
+    "tokens_in": 21,
+    "tokens_out": 163,
+    "retrieved_docs": [
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "5_Semana_AI_20250902_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "4_SEMANA_AI_20250826_1.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "5_Semana_AI_20250902_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "4_SEMANA_AI_20250826_1.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "Los supuestos típicos en regresión lineal incluyen la linealidad de la relación entre predictores y la variable respuesta, la ausencia de datos atípicos y la no colinealidad de los datos. Estos supuestos son importantes porque afectan la validez y precisión de los resultados obtenidos a través del modelo de regresión lineal.\n\n**Referencias:**\n[1] 5_Semana_AI_20250904_1.pdf, p.0 (Autor: Estudiante)\n[2] 5_Semana_AI_20250902_1.pdf, p.0 (Autor: Estudiante)\n[3] 4_SEMANA_AI_20250826_1.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:31:02.476755",
+    "agent_mode": "A",
+    "question_id": 15,
+    "question_text": " Menciona dos riesgos comunes de usar RAG y cómo mitigarlos.",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 1482.6586246490479,
+    "t_generation_ms": 636.1932754516602,
+    "t_total_ms": 2118.851900100708,
+    "tokens_in": 18,
+    "tokens_out": 110,
+    "retrieved_docs": [
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "La información sobre los riesgos comunes de usar RAG y cómo mitigarlos no aparece en los fragmentos proporcionados.\n\n**Referencias:**\n[1] 7_Semana_AI_20250916_2.pdf, p.0 (Autor: Estudiante)\n[2] 7_Semana_AI_20250916_2.pdf, p.0 (Autor: Estudiante)\n[3] 5_Semana_AI_20250904_1.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:31:04.510899",
+    "agent_mode": "B",
+    "question_id": 16,
+    "question_text": " Menciona dos riesgos comunes de usar RAG y cómo mitigarlos.",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 944.2992210388184,
+    "t_generation_ms": 510.2417469024658,
+    "t_total_ms": 1454.5409679412842,
+    "tokens_in": 18,
+    "tokens_out": 110,
+    "retrieved_docs": [
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "5_Semana_AI_20250902_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "1_Semana_AI_20250807_2.pdf",
+        "page": 1,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "5_Semana_AI_20250902_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "1_Semana_AI_20250807_2.pdf",
+        "page": 1
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "La información sobre los riesgos comunes de usar RAG y cómo mitigarlos no aparece en los fragmentos proporcionados.\n\n**Referencias:**\n[1] 5_Semana_AI_20250904_1.pdf, p.0 (Autor: Estudiante)\n[2] 5_Semana_AI_20250902_1.pdf, p.0 (Autor: Estudiante)\n[3] 1_Semana_AI_20250807_2.pdf, p.1 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:31:14.579419",
+    "agent_mode": "A",
+    "question_id": 17,
+    "question_text": "Da un ejemplo donde coseno y euclidiana ordenen distinto un par de vectores. 🌐 Preg",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 272.48120307922363,
+    "t_generation_ms": 1348.0453491210938,
+    "t_total_ms": 1620.5265522003174,
+    "tokens_in": 25,
+    "tokens_out": 177,
+    "retrieved_docs": [
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "Preprocesamiento de Datos I. PREGUNTAS DEL QUIZ",
+        "page": 0
+      },
+      {
+        "file": "Apuntes de la Clase Semana 7 2025",
+        "page": 0
+      },
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 0,
+    "citations_correct_ratio": 0.6,
+    "em_binary": 1,
+    "answer": "La información sobre un ejemplo donde coseno y euclidiana ordenen distinto un par de vectores no aparece en los fragmentos proporcionados.\n\n**Referencias:**\n[1] Preprocesamiento de Datos I. PREGUNTAS DEL QUIZ, p.0 (Autor: Estudiante)\n[2] Apuntes de la Clase Semana 7 2025, p.0 (Autor: Rafael Vargas Solis)\n\n**Referencias:**\n[1] 5_Semana_AI_20250904_1.pdf, p.0 (Autor: Estudiante)\n[2] 7_Semana_AI_20250916_2.pdf, p.0 (Autor: Estudiante)\n[3] 7_Semana_AI_20250916_2.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:31:16.511682",
+    "agent_mode": "B",
+    "question_id": 18,
+    "question_text": "Da un ejemplo donde coseno y euclidiana ordenen distinto un par de vectores. 🌐 Preg",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 339.2047882080078,
+    "t_generation_ms": 1062.1111392974854,
+    "t_total_ms": 1401.3159275054932,
+    "tokens_in": 25,
+    "tokens_out": 114,
+    "retrieved_docs": [
+      {
+        "file": "6_Semana_AI_20250911_2.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "6_Semana_AI_20250911_1.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "6_Semana_AI_20250911_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "6_Semana_AI_20250911_1.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "La información sobre un ejemplo donde coseno y euclidiana ordenen distinto un par de vectores no aparece en los fragmentos proporcionados.\n\n**Referencias:**\n[1] 6_Semana_AI_20250911_2.pdf, p.0 (Autor: Estudiante)\n[2] 7_Semana_AI_20250916_2.pdf, p.0 (Autor: Estudiante)\n[3] 6_Semana_AI_20250911_1.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:31:37.311160",
+    "agent_mode": "A",
+    "question_id": 19,
+    "question_text": "¿Cuál es la mejor época para plantar maíz en Costa Rica?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 285.0961685180664,
+    "t_generation_ms": 1935.154676437378,
+    "t_total_ms": 2220.2508449554443,
+    "tokens_in": 18,
+    "tokens_out": 220,
+    "retrieved_docs": [
+      {
+        "file": "6_Semana_AI_20250911_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "6_Semana_AI_20250911_2.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "Apuntes Semana 6 Apuntes del 11 de setiembre de 2025 Andrey Urena Bermudez - 2022017442\n[2] Apuntes de la Clase Semana 6 Apuntes del 11 de setiembre de 2025 Sahid Rojas Chacon - 2018319311\n[3] Apuntes de la Clase Semana 7 2025 Curso de Inteligencia Artificial Rafael Vargas Solis\n\n**Referencias:**\n[1] 6_Semana_AI_20250911_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "6_Semana_AI_20250911_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 0,
+    "citations_correct_ratio": 0.6666666666666666,
+    "em_binary": 1,
+    "answer": "La información sobre la mejor época para plantar maíz en Costa Rica no aparece en los fragmentos proporcionados.\n\n**Referencias:**\n[1] Apuntes Semana 6 Apuntes del 11 de setiembre de 2025 Andrey Urena Bermudez - 2022017442\n[2] Apuntes de la Clase Semana 6 Apuntes del 11 de setiembre de 2025 Sahid Rojas Chacon - 2018319311\n[3] Apuntes de la Clase Semana 7 2025 Curso de Inteligencia Artificial Rafael Vargas Solis\n\n**Referencias:**\n[1] 6_Semana_AI_20250911_1.pdf, p.0 (Autor: Estudiante)\n[2] 6_Semana_AI_20250911_2.pdf, p.0 (Autor: Estudiante)\n[3] 7_Semana_AI_20250916_2.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:31:38.771309",
+    "agent_mode": "B",
+    "question_id": 20,
+    "question_text": "¿Cuál es la mejor época para plantar maíz en Costa Rica?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 278.97119522094727,
+    "t_generation_ms": 638.2839679718018,
+    "t_total_ms": 917.255163192749,
+    "tokens_in": 18,
+    "tokens_out": 109,
+    "retrieved_docs": [
+      {
+        "file": "6_Semana_AI_20250911_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "4_SEMANA_AI_20250826_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "6_Semana_AI_20250911_2.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "6_Semana_AI_20250911_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "4_SEMANA_AI_20250826_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "6_Semana_AI_20250911_2.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "La información sobre la mejor época para plantar maíz en Costa Rica no aparece en los fragmentos proporcionados.\n\n**Referencias:**\n[1] 6_Semana_AI_20250911_1.pdf, p.0 (Autor: Estudiante)\n[2] 4_SEMANA_AI_20250826_1.pdf, p.0 (Autor: Estudiante)\n[3] 6_Semana_AI_20250911_2.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:31:49.731386",
+    "agent_mode": "A",
+    "question_id": 21,
+    "question_text": "¿Qué es un transformer en IA y quién lo propuso?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 392.20261573791504,
+    "t_generation_ms": 973.14453125,
+    "t_total_ms": 1365.347146987915,
+    "tokens_in": 14,
+    "tokens_out": 142,
+    "retrieved_docs": [
+      {
+        "file": "11_Semana_AI_20251014_2.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "6_Semana_AI_20250909_2-220676337.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "11_Semana_AI_20251014_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "6_Semana_AI_20250909_2-220676337.pdf",
+        "page": 0
+      },
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "Un transformer en IA es un modelo de aprendizaje automático que se basa en la atención para procesar secuencias de datos. Fue propuesto por Vaswani et al. en el artículo \"Attention is All You Need\" en 2017.\n\n**Referencias:**\n[1] 11_Semana_AI_20251014_2.pdf, p.0 (Autor: Estudiante)\n[2] 6_Semana_AI_20250909_2-220676337.pdf, p.0 (Autor: Estudiante)\n[3] 5_Semana_AI_20250904_1.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:31:51.247148",
+    "agent_mode": "B",
+    "question_id": 22,
+    "question_text": "¿Qué es un transformer en IA y quién lo propuso?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 313.4732246398926,
+    "t_generation_ms": 663.8665199279785,
+    "t_total_ms": 977.3397445678711,
+    "tokens_in": 14,
+    "tokens_out": 138,
+    "retrieved_docs": [
+      {
+        "file": "11_Semana_AI_20251014_3.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "11_Semana_AI_20251014_2.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "12_SEMANA_AI_20251021_1.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "11_Semana_AI_20251014_3.pdf",
+        "page": 0
+      },
+      {
+        "file": "11_Semana_AI_20251014_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "12_SEMANA_AI_20251021_1.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "Un transformer en IA es un modelo de aprendizaje automático que se basa en la atención para procesar secuencias de datos. Fue propuesto por Vaswani et al. en el artículo \"Attention is All You Need\" en 2017.\n\n**Referencias:**\n[1] 11_Semana_AI_20251014_3.pdf, p.0 (Autor: Estudiante)\n[2] 11_Semana_AI_20251014_2.pdf, p.0 (Autor: Estudiante)\n[3] 12_SEMANA_AI_20251021_1.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:32:16.194624",
+    "agent_mode": "A",
+    "question_id": 23,
+    "question_text": "¿Cuál es la versión estable más reciente de Streamlit?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 280.4701328277588,
+    "t_generation_ms": 1268.9707279205322,
+    "t_total_ms": 1549.440860748291,
+    "tokens_in": 14,
+    "tokens_out": 105,
+    "retrieved_docs": [
+      {
+        "file": "2_Semana_AI_20250814_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "3_Semana_AI_20250821_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "2_Semana_AI_20250814_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "3_Semana_AI_20250821_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "La información sobre la versión estable más reciente de Streamlit no aparece en los fragmentos proporcionados.\n\n**Referencias:**\n[1] 2_Semana_AI_20250814_1.pdf, p.0 (Autor: Estudiante)\n[2] 3_Semana_AI_20250821_1.pdf, p.0 (Autor: Estudiante)\n[3] 5_Semana_AI_20250904_1.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "c6174c5d",
+    "timestamp": "2025-11-10T00:32:17.803379",
+    "agent_mode": "B",
+    "question_id": 24,
+    "question_text": "¿Cuál es la versión estable más reciente de Streamlit?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 275.0999927520752,
+    "t_generation_ms": 773.5855579376221,
+    "t_total_ms": 1048.6855506896973,
+    "tokens_in": 14,
+    "tokens_out": 105,
+    "retrieved_docs": [
+      {
+        "file": "2_Semana_AI_20250814_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "2_Semana_AI_20250814_2.pdf",
+        "page": 2,
+        "score": 0.0
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 3,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "2_Semana_AI_20250814_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "2_Semana_AI_20250814_2.pdf",
+        "page": 2
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 3
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "La información sobre la versión estable más reciente de Streamlit no aparece en los fragmentos proporcionados.\n\n**Referencias:**\n[1] 2_Semana_AI_20250814_1.pdf, p.0 (Autor: Estudiante)\n[2] 2_Semana_AI_20250814_2.pdf, p.2 (Autor: Estudiante)\n[3] 4_Semana_AI_20250828_1.pdf, p.3 (Autor: Estudiante)"
+  }
+]

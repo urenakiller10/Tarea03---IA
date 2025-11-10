@@ -1,0 +1,855 @@
+================================================================================
+CONTEXTO DEL PROYECTO: Sistema RAG con Agente Conversacional
+================================================================================
+
+### ESTRUCTURA DEL PROYECTO ###
+
+Tarea03---IA/
+├── agent.py
+├── analyze_metrics.py
+├── app.py
+├── build_index.py
+├── metrics.py
+├── rag_tools.py
+└── settings.py
+
+
+================================================================================
+### CÓDIGO DE LOS ARCHIVOS ###
+================================================================================
+
+--------------------------------------------------------------------------------
+ARCHIVO: requirements.txt
+--------------------------------------------------------------------------------
+
+langchain==0.2.0
+langchain-openai==0.1.7
+langchain-community==0.2.0
+langchain-huggingface==0.0.3
+langchain-core==0.2.0
+python-dotenv==1.0.1
+unidecode==1.3.8
+chromadb==0.5.0
+pypdf==4.2.0
+streamlit==1.35.0
+duckduckgo-search==6.1.0
+sentence-transformers==3.0.0
+openai==1.30.0
+tiktoken==0.7.0
+pandas==2.2.0
+matplotlib==3.8.0
+seaborn==0.13.0
+
+
+
+--------------------------------------------------------------------------------
+ARCHIVO: app\agent.py
+--------------------------------------------------------------------------------
+
+from typing import Literal, Tuple, List, Dict
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import HumanMessage, AIMessage
+
+from rag_tools import rag_a_tool, rag_b_tool, web_search_tool
+from settings import CHAT_MODEL
+from metrics import MetricsCollector
+
+PROFILE = """
+Nombre: TicoRAG
+Rol: Agente conversacional del curso de IA TEC.
+Especialidad: Responder preguntas usando apuntes (base vectorial).
+Estilo: Claro, preciso, con citas. Evita inventar.
+Restricciones:
+- Usa RAG (A o B) por defecto.
+- NO uses WebSearch a menos que el usuario lo pida explícitamente.
+- Memoria acotada a una ventana de mensajes.
+"""
+
+class SimpleMemory:
+    """Memoria conversacional simple con ventana deslizante."""
+    def __init__(self, window_k: int = 6):
+        self.messages = []
+        self.window_k = window_k
+    
+    def add_user_message(self, content: str):
+        self.messages.append(HumanMessage(content=content))
+        self._trim()
+    
+    def add_ai_message(self, content: str):
+        self.messages.append(AIMessage(content=content))
+        self._trim()
+    
+    def _trim(self):
+        if len(self.messages) > self.window_k:
+            self.messages = self.messages[-self.window_k:]
+    
+    def get_context(self) -> str:
+        context = []
+        for msg in self.messages:
+            if isinstance(msg, HumanMessage):
+                context.append(f"Usuario: {msg.content}")
+            elif isinstance(msg, AIMessage):
+                context.append(f"Asistente: {msg.content}")
+        return "\n".join(context)
+
+class Agent:
+    def __init__(self, window_k: int = 6, model: str = CHAT_MODEL, collect_metrics: bool = False):
+        self.llm = ChatOpenAI(model=model, temperature=0)
+        self.memory = SimpleMemory(window_k=window_k)
+        self.collect_metrics = collect_metrics
+        self.metrics_collector = MetricsCollector() if collect_metrics else None
+        self.question_counter = 0
+
+    def decide_and_answer(self, user_query: str, rag_mode: Literal["A", "B"] = "A", allow_web: bool = True) -> str:
+        """
+        Retorna la respuesta al usuario.
+        Si collect_metrics=True, guarda métricas internamente.
+        """
+        self.question_counter += 1
+        text_l = user_query.lower()
+        wants_web = any(w in text_l for w in ["busca en la web", "buscar en la web", "web", "internet", "google"])
+
+        web_used = False
+        t_retrieval_ms = 0.0
+        t_generation_ms = 0.0
+        retrieved_docs = []
+        result = ""
+
+        if wants_web and not allow_web:
+            result = "(La búsqueda web está deshabilitada actualmente. Actívala en las opciones para permitir búsquedas en línea.)"
+        elif allow_web and wants_web:
+            web_used = True
+            result, t_retrieval_ms, t_generation_ms, retrieved_docs = web_search_tool(user_query)
+        else:
+            context = self.memory.get_context()
+            enriched_query = f"Contexto previo:\n{context}\n\nPregunta actual: {user_query}" if context else user_query
+            
+            if rag_mode == "A":
+                result, t_retrieval_ms, t_generation_ms, retrieved_docs = rag_a_tool(enriched_query)
+            else:
+                result, t_retrieval_ms, t_generation_ms, retrieved_docs = rag_b_tool(enriched_query)
+
+        # Guardar en memoria
+        self.memory.add_user_message(user_query)
+        self.memory.add_ai_message(result)
+
+        # Recolectar métricas
+        if self.collect_metrics and self.metrics_collector:
+            tokens_in = self.metrics_collector.count_tokens(user_query)
+            tokens_out = self.metrics_collector.count_tokens(result)
+            
+            self.metrics_collector.add_metric(
+                agent_mode=rag_mode,
+                question_id=self.question_counter,
+                question_text=user_query,
+                web_allowed=allow_web,
+                web_used=web_used,
+                t_retrieval_ms=t_retrieval_ms,
+                t_generation_ms=t_generation_ms,
+                tokens_in=tokens_in,
+                tokens_out=tokens_out,
+                retrieved_docs=retrieved_docs,
+                answer=result
+            )
+
+        return result
+    
+    def save_metrics(self, json_path: str = "metrics.json", csv_path: str = "metrics.csv"):
+        """Guarda las métricas recolectadas."""
+        if self.metrics_collector:
+            self.metrics_collector.save_to_json(json_path)
+            self.metrics_collector.save_to_csv(csv_path)
+            return self.metrics_collector.get_summary()
+        return {}
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+ARCHIVO: app\analyze_metrics.py
+--------------------------------------------------------------------------------
+
+import json
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+def load_metrics(json_path="metrics.json"):
+    """Carga métricas desde JSON."""
+    with open(json_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def analyze_metrics(metrics_data):
+    """Genera análisis y visualizaciones."""
+    df = pd.DataFrame(metrics_data)
+    
+    print("=" * 60)
+    print("RESUMEN DE MÉTRICAS")
+    print("=" * 60)
+    
+    # Resumen general
+    print(f"\nTotal de preguntas: {len(df)}")
+    print(f"RAG A: {len(df[df['agent_mode'] == 'A'])}")
+    print(f"RAG B: {len(df[df['agent_mode'] == 'B'])}")
+    
+    # Tiempos
+    print("\n--- TIEMPOS (ms) ---")
+    print(df[['agent_mode', 't_retrieval_ms', 't_generation_ms', 't_total_ms']].groupby('agent_mode').agg(['mean', 'median', 'std']))
+    
+    # Tokens
+    print("\n--- TOKENS ---")
+    print(df[['agent_mode', 'tokens_in', 'tokens_out']].groupby('agent_mode').agg(['mean', 'median']))
+    
+    # Calidad
+    print("\n--- CALIDAD ---")
+    print(df[['agent_mode', 'fidelity_binary', 'citations_correct_ratio', 'em_binary']].groupby('agent_mode').agg(['mean', 'std']))
+    
+    # Gráficas
+    fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+    
+    # 1. Tiempos de recuperación
+    df.boxplot(column='t_retrieval_ms', by='agent_mode', ax=axes[0, 0])
+    axes[0, 0].set_title('Tiempo de Recuperación por Estrategia')
+    axes[0, 0].set_ylabel('ms')
+    
+    # 2. Tiempos de generación
+    df.boxplot(column='t_generation_ms', by='agent_mode', ax=axes[0, 1])
+    axes[0, 1].set_title('Tiempo de Generación por Estrategia')
+    axes[0, 1].set_ylabel('ms')
+    
+    # 3. Fidelidad
+    fidelity_counts = df.groupby(['agent_mode', 'fidelity_binary']).size().unstack(fill_value=0)
+    fidelity_counts.plot(kind='bar', ax=axes[1, 0])
+    axes[1, 0].set_title('Fidelidad (Citas Correctas)')
+    axes[1, 0].set_ylabel('Cantidad')
+    axes[1, 0].legend(['Incorrecto', 'Correcto'])
+    
+    # 4. Tokens
+    df.plot(x='question_id', y=['tokens_in', 'tokens_out'], ax=axes[1, 1])
+    axes[1, 1].set_title('Tokens por Pregunta')
+    axes[1, 1].set_ylabel('Tokens')
+    
+    plt.tight_layout()
+    plt.savefig('metrics_analysis.png', dpi=300)
+    print("\n✅ Gráfica guardada en 'metrics_analysis.png'")
+    
+    # Tabla comparativa
+    comparison = df.groupby('agent_mode').agg({
+        't_retrieval_ms': ['mean', 'median'],
+        't_generation_ms': ['mean', 'median'],
+        'fidelity_binary': 'mean',
+        'citations_correct_ratio': 'mean',
+        'em_binary': 'mean',
+        'tokens_in': 'mean',
+        'tokens_out': 'mean'
+    }).round(2)
+    
+    print("\n--- TABLA COMPARATIVA ---")
+    print(comparison)
+    
+    comparison.to_csv('comparison_table.csv')
+    print("\n✅ Tabla guardada en 'comparison_table.csv'")
+
+if __name__ == "__main__":
+    metrics = load_metrics()
+    analyze_metrics(metrics)
+
+
+--------------------------------------------------------------------------------
+ARCHIVO: app\app.py
+--------------------------------------------------------------------------------
+
+import os
+from dotenv import load_dotenv
+import streamlit as st
+import time
+from agent import Agent
+
+load_dotenv()
+
+st.set_page_config(page_title="GPTEC", page_icon="🤖", layout="wide")
+st.title("GPTEC – Agente (RAG A/B) con memoria y métricas")
+
+with st.sidebar:
+    st.header("Opciones")
+    rag_mode = st.radio("Estrategia:", ["A (chunks fijos)", "B (tokens/oraciones)"])
+    allow_web = st.toggle("Permitir Búsqueda Web", value=False)
+    collect_metrics = st.toggle(" Recolectar métricas", value=False)
+    st.caption("La web solo se usa si el usuario lo solicita explícitamente.")
+    
+    if st.button("🗑️ Limpiar memoria"):
+        st.session_state.agent = Agent(window_k=6, collect_metrics=collect_metrics)
+        st.success("Memoria limpiada")
+    
+    if collect_metrics and "agent" in st.session_state and st.session_state.agent.metrics_collector:
+        if st.button("💾 Guardar métricas"):
+            summary = st.session_state.agent.save_metrics()
+            st.success("Métricas guardadas en metrics.json y metrics.csv")
+            st.json(summary)
+
+if "agent" not in st.session_state:
+    st.session_state.agent = Agent(window_k=6, collect_metrics=collect_metrics)
+
+query = st.text_input("Pregunta (basada en los apuntes PDF del folder /data):")
+
+col1, col2 = st.columns([2, 1])
+
+with col1:
+    if st.button("Preguntar") and query.strip():
+        mode = "A" if rag_mode.startswith("A") else "B"
+        with st.spinner("Consultando..."):
+            answer = st.session_state.agent.decide_and_answer(query, rag_mode=mode, allow_web=allow_web)
+        st.markdown("### Respuesta")
+        st.write(answer)
+
+with col2:
+    if st.button("🔍 Comparar A vs B") and query.strip():
+        with st.spinner("Comparando..."):
+            start_a = time.time()
+            answer_a = st.session_state.agent.decide_and_answer(query, rag_mode="A", allow_web=False)
+            time_a = time.time() - start_a
+            
+            start_b = time.time()
+            answer_b = st.session_state.agent.decide_and_answer(query, rag_mode="B", allow_web=False)
+            time_b = time.time() - start_b
+        
+        st.markdown("#### RAG A")
+        st.info(answer_a[:300] + "...")
+        st.caption(f"⏱️ {time_a:.2f}s")
+        
+        st.markdown("#### RAG B")
+        st.success(answer_b[:300] + "...")
+        st.caption(f"⏱️ {time_b:.2f}s")
+
+# Mostrar memoria conversacional
+with st.expander("🧠 Ver memoria conversacional"):
+    memory_context = st.session_state.agent.memory.get_context()
+    if memory_context:
+        st.text_area("Contexto actual:", memory_context, height=200, disabled=True)
+        st.caption(f"Mensajes en memoria: {len(st.session_state.agent.memory.messages)}")
+    else:
+        st.info("La memoria está vacía.")
+
+# Mostrar métricas si está activado
+if collect_metrics and st.session_state.agent.metrics_collector:
+    with st.expander("📊 Métricas de la sesión"):
+        summary = st.session_state.agent.metrics_collector.get_summary()
+        if summary:
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("Preguntas", summary.get("total_questions", 0))
+                st.metric("Fidelidad promedio", f"{summary.get('fidelity_rate', 0):.2%}")
+            with col2:
+                st.metric("T. retrieval (ms)", f"{summary.get('avg_t_retrieval_ms', 0):.1f}")
+                st.metric("T. generación (ms)", f"{summary.get('avg_t_generation_ms', 0):.1f}")
+            with col3:
+                st.metric("Tokens in (prom.)", f"{summary.get('avg_tokens_in', 0):.0f}")
+                st.metric("Tokens out (prom.)", f"{summary.get('avg_tokens_out', 0):.0f}")
+
+st.divider()
+st.caption("Tip: activa 'Recolectar métricas' para evaluar rendimiento.")
+
+
+
+--------------------------------------------------------------------------------
+ARCHIVO: app\build_index.py
+--------------------------------------------------------------------------------
+
+import os, re, glob
+from dotenv import load_dotenv
+from unidecode import unidecode
+from langchain_community.document_loaders import PyPDFLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter, SentenceTransformersTokenTextSplitter
+from langchain_community.vectorstores import Chroma
+from langchain_openai import OpenAIEmbeddings  # ← CAMBIO
+from settings import DATA_DIR, DB_A_DIR, DB_B_DIR, EMBED_MODEL, CHUNK_SIZE, CHUNK_OVERLAP, TOKENS_PER_CHUNK, TOKENS_OVERLAP
+
+def limpiar_texto(txt: str) -> str:
+    txt = unidecode(txt)
+    txt = re.sub(r"\s+", " ", txt).strip()
+    return txt
+
+def cargar_docs():
+    pdfs = glob.glob(os.path.join(DATA_DIR, "*.pdf"))
+    if not pdfs:
+        raise SystemExit(f"No hay PDFs en {DATA_DIR}. Mete tus apuntes ahí.")
+    docs = []
+    for pdf_path in pdfs:
+        loader = PyPDFLoader(pdf_path)
+        for d in loader.load():
+            d.page_content = limpiar_texto(d.page_content)
+            d.metadata = {
+                "source": os.path.basename(pdf_path),
+                "page": d.metadata.get("page", None),
+                "fecha": "2025-10-XX",  # Agregar si es posible extraer del nombre
+                "autor": "Estudiante",   # Agregar si está disponible
+            }
+            docs.append(d)
+    return docs
+
+def main():
+    load_dotenv()
+    print(f"DATA_DIR = {DATA_DIR}")
+    docs = cargar_docs()
+
+    splitter_A = RecursiveCharacterTextSplitter(
+        chunk_size=CHUNK_SIZE,
+        chunk_overlap=CHUNK_OVERLAP,
+        separators=["\n\n", "\n", " ", ""],
+    )
+    chunks_A = splitter_A.split_documents(docs)
+    print(f"[A] Chunks creados: {len(chunks_A)}")
+
+    splitter_B = SentenceTransformersTokenTextSplitter(
+        tokens_per_chunk=TOKENS_PER_CHUNK,
+        chunk_overlap=TOKENS_OVERLAP,
+        model_name="sentence-transformers/all-MiniLM-L6-v2",
+    )
+    chunks_B = splitter_B.split_documents(docs)
+    print(f"[B] Chunks creados: {len(chunks_B)}")
+
+    # ← CAMBIO: usar OpenAI embeddings
+    emb = OpenAIEmbeddings(model=EMBED_MODEL)
+
+    if os.path.exists(DB_A_DIR):
+        print(f"Limpiando índice A: {DB_A_DIR}")
+    Chroma.from_documents(chunks_A, embedding=emb, persist_directory=DB_A_DIR).persist()
+    print(f"Índice A listo en {DB_A_DIR}")
+
+    if os.path.exists(DB_B_DIR):
+        print(f"Limpiando índice B: {DB_B_DIR}")
+    Chroma.from_documents(chunks_B, embedding=emb, persist_directory=DB_B_DIR).persist()
+    print(f"Índice B listo en {DB_B_DIR}")
+
+if __name__ == "__main__":
+    main()
+
+
+
+--------------------------------------------------------------------------------
+ARCHIVO: app\metrics.py
+--------------------------------------------------------------------------------
+
+import time
+import re
+import json
+import uuid
+from datetime import datetime
+from typing import List, Dict, Any, Tuple
+from dataclasses import dataclass, asdict
+import tiktoken
+
+@dataclass
+class QuestionMetrics:
+    """Métricas para una pregunta individual."""
+    run_id: str
+    timestamp: str
+    agent_mode: str  # "A" o "B"
+    question_id: int
+    question_text: str
+    web_allowed: bool
+    web_used: bool
+    
+    # Tiempos (ms)
+    t_retrieval_ms: float
+    t_generation_ms: float
+    t_total_ms: float
+    
+    # Tokens
+    tokens_in: int
+    tokens_out: int
+    
+    # Documentos
+    retrieved_docs: List[Dict[str, Any]]  # [{"file": "x.pdf", "page": 3, "score": 0.85}, ...]
+    cited_docs: List[Dict[str, Any]]      # [{"file": "x.pdf", "page": 3}, ...]
+    
+    # Métricas de calidad
+    fidelity_binary: int  # 1 si todas las citas están en retrieved, 0 si no
+    citations_correct_ratio: float  # % de citas correctas
+    em_binary: int  # 1 si coincide con gold answer, 0 si no
+    
+    # Respuesta
+    answer: str
+
+class MetricsCollector:
+    """Colector de métricas para evaluación."""
+    
+    def __init__(self):
+        self.metrics: List[QuestionMetrics] = []
+        self.run_id = str(uuid.uuid4())[:8]
+        
+        # Gold answers para preguntas objetivas
+        self.gold_answers = {
+            "distancia coseno": r"(coseno|cos|similitud.*coseno|\sum.*x.*y|producto.*escalar)",
+            "distancia euclidiana": r"(euclidiana?|euclid|raiz.*cuadrada?|\sqrt|diferencia.*cuadrados?)",
+            "regresión lineal": r"(y\s*=\s*[wm]|lineal|mx\s*\+\s*b|pendiente|intercepto)",
+            "kernel": r"(función.*similitud|espacio.*características|kernel|transformación)",
+            "backpropagation": r"(propagación.*atrás|gradiente|derivada|cadena|chain.*rule)",
+            "gradiente descendente": r"(gradient.*descent|descenso.*gradiente|optimización|minimizar)",
+        }
+        
+        try:
+            self.tokenizer = tiktoken.encoding_for_model("gpt-3.5-turbo")
+        except:
+            self.tokenizer = tiktoken.get_encoding("cl100k_base")
+    
+    def count_tokens(self, text: str) -> int:
+        """Cuenta tokens usando tiktoken."""
+        try:
+            return len(self.tokenizer.encode(text))
+        except:
+            return len(text.split())  # Fallback aproximado
+    
+    def parse_citations(self, answer: str) -> List[Dict[str, Any]]:
+        """
+        Extrae citas del formato: [1] archivo.pdf, p.5
+        """
+        citations = []
+        # Patrón: [número] archivo, p.página
+        pattern = r'\[(\d+)\]\s*([^,]+),\s*p\.(\d+)'
+        matches = re.finditer(pattern, answer, re.IGNORECASE)
+        
+        for match in matches:
+            citations.append({
+                "file": match.group(2).strip(),
+                "page": int(match.group(3))
+            })
+        
+        return citations
+    
+    def calculate_fidelity(self, cited: List[Dict], retrieved: List[Dict]) -> int:
+        """
+        Fidelidad = 1 si todas las citas están en retrieved, 0 si no.
+        """
+        if not cited:
+            return 0
+        
+        retrieved_set = {(doc["file"], doc["page"]) for doc in retrieved}
+        
+        for cite in cited:
+            if (cite["file"], cite["page"]) not in retrieved_set:
+                return 0
+        
+        return 1
+    
+    def calculate_citation_correctness(self, cited: List[Dict], retrieved: List[Dict]) -> float:
+        """
+        % de citas que coinciden con retrieved.
+        """
+        if not cited:
+            return 0.0
+        
+        retrieved_set = {(doc["file"], doc["page"]) for doc in retrieved}
+        correct = sum(1 for cite in cited if (cite["file"], cite["page"]) in retrieved_set)
+        
+        return correct / len(cited)
+    
+    def check_exact_match(self, question: str, answer: str) -> int:
+        """
+        Verifica si la respuesta contiene los conceptos clave para preguntas objetivas.
+        """
+        question_lower = question.lower()
+        answer_lower = answer.lower()
+        
+        # Normalizar texto
+        from unidecode import unidecode
+        answer_normalized = unidecode(answer_lower)
+        
+        for key, pattern in self.gold_answers.items():
+            if key in question_lower:
+                if re.search(pattern, answer_normalized, re.IGNORECASE):
+                    return 1
+                return 0
+        
+        # Si no es pregunta objetiva, asumimos correcto
+        return 1
+    
+    def add_metric(self, 
+                   agent_mode: str,
+                   question_id: int,
+                   question_text: str,
+                   web_allowed: bool,
+                   web_used: bool,
+                   t_retrieval_ms: float,
+                   t_generation_ms: float,
+                   tokens_in: int,
+                   tokens_out: int,
+                   retrieved_docs: List[Dict],
+                   answer: str):
+        """
+        Agrega una métrica completa.
+        """
+        cited_docs = self.parse_citations(answer)
+        fidelity = self.calculate_fidelity(cited_docs, retrieved_docs)
+        citations_ratio = self.calculate_citation_correctness(cited_docs, retrieved_docs)
+        em = self.check_exact_match(question_text, answer)
+        
+        metric = QuestionMetrics(
+            run_id=self.run_id,
+            timestamp=datetime.now().isoformat(),
+            agent_mode=agent_mode,
+            question_id=question_id,
+            question_text=question_text,
+            web_allowed=web_allowed,
+            web_used=web_used,
+            t_retrieval_ms=t_retrieval_ms,
+            t_generation_ms=t_generation_ms,
+            t_total_ms=t_retrieval_ms + t_generation_ms,
+            tokens_in=tokens_in,
+            tokens_out=tokens_out,
+            retrieved_docs=retrieved_docs,
+            cited_docs=cited_docs,
+            fidelity_binary=fidelity,
+            citations_correct_ratio=citations_ratio,
+            em_binary=em,
+            answer=answer
+        )
+        
+        self.metrics.append(metric)
+    
+    def save_to_json(self, filepath: str = "metrics.json"):
+        """Guarda métricas en JSON."""
+        with open(filepath, 'w', encoding='utf-8') as f:
+            json.dump([asdict(m) for m in self.metrics], f, indent=2, ensure_ascii=False)
+    
+    def save_to_csv(self, filepath: str = "metrics.csv"):
+        """Guarda métricas en CSV."""
+        import csv
+        
+        if not self.metrics:
+            return
+        
+        with open(filepath, 'w', newline='', encoding='utf-8') as f:
+            fieldnames = [
+                'run_id', 'timestamp', 'agent_mode', 'question_id', 'question_text',
+                'web_allowed', 'web_used', 't_retrieval_ms', 't_generation_ms', 't_total_ms',
+                'tokens_in', 'tokens_out', 'retrieved_docs', 'cited_docs',
+                'fidelity_binary', 'citations_correct_ratio', 'em_binary'
+            ]
+            
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            
+            for m in self.metrics:
+                row = asdict(m)
+                # Convertir listas a JSON string para CSV
+                row['retrieved_docs'] = json.dumps(row['retrieved_docs'])
+                row['cited_docs'] = json.dumps(row['cited_docs'])
+                # Excluir answer del CSV (muy largo)
+                row.pop('answer', None)
+                writer.writerow(row)
+    
+    def get_summary(self) -> Dict[str, Any]:
+        """Genera resumen de métricas."""
+        if not self.metrics:
+            return {}
+        
+        import statistics
+        
+        return {
+            "total_questions": len(self.metrics),
+            "avg_t_retrieval_ms": statistics.mean(m.t_retrieval_ms for m in self.metrics),
+            "median_t_retrieval_ms": statistics.median(m.t_retrieval_ms for m in self.metrics),
+            "avg_t_generation_ms": statistics.mean(m.t_generation_ms for m in self.metrics),
+            "median_t_generation_ms": statistics.median(m.t_generation_ms for m in self.metrics),
+            "avg_tokens_in": statistics.mean(m.tokens_in for m in self.metrics),
+            "avg_tokens_out": statistics.mean(m.tokens_out for m in self.metrics),
+            "fidelity_rate": statistics.mean(m.fidelity_binary for m in self.metrics),
+            "avg_citation_correctness": statistics.mean(m.citations_correct_ratio for m in self.metrics),
+            "exact_match_rate": statistics.mean(m.em_binary for m in self.metrics),
+            "web_usage_rate": statistics.mean(m.web_used for m in self.metrics),
+        }
+
+
+--------------------------------------------------------------------------------
+ARCHIVO: app\rag_tools.py
+--------------------------------------------------------------------------------
+
+import os
+import time
+from typing import List, Tuple
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_community.vectorstores import Chroma
+from langchain_core.documents import Document
+from langchain_core.prompts import PromptTemplate
+
+from settings import DB_A_DIR, DB_B_DIR, EMBED_MODEL, CHAT_MODEL
+
+def _load_vs(path: str):
+    emb = OpenAIEmbeddings(model=EMBED_MODEL)
+    return Chroma(persist_directory=path, embedding_function=emb)
+
+def _format_citations(docs: List[Document]) -> str:
+    cites = []
+    for i, d in enumerate(docs, 1):
+        src = d.metadata.get("source", "desconocido")
+        page = d.metadata.get("page", "?")
+        autor = d.metadata.get("autor", "")
+        cites.append(f"[{i}] {src}, p.{page} {f'(Autor: {autor})' if autor else ''}")
+    return "\n".join(cites) if cites else "—"
+
+RAG_PROMPT = PromptTemplate.from_template("""
+Eres un asistente que responde SOLO con información de los fragmentos recuperados.
+Si no está en los fragmentos, di explícitamente que no aparece en los apuntes y no inventes.
+Incluye una sección "Referencias" con archivo y página.
+Pregunta: {question}
+
+Fragmentos:
+{context}
+
+Respuesta:
+""")
+
+WEB_PROMPT = PromptTemplate.from_template("""
+Eres un asistente que responde preguntas usando información de búsquedas web.
+Genera una respuesta clara y concisa basada en los resultados encontrados.
+NO inventes información que no esté en los resultados.
+
+Pregunta: {question}
+
+Resultados de búsqueda:
+{web_results}
+
+Genera una respuesta coherente y al final incluye una sección "Referencias Web" con los enlaces relevantes.
+""")
+
+def _answer_with_retriever(question: str, retriever, model: str = CHAT_MODEL) -> Tuple[str, float, float, List[dict]]:
+    """
+    Retorna: (respuesta, t_retrieval_ms, t_generation_ms, retrieved_docs)
+    """
+    # Medir tiempo de recuperación
+    start_retrieval = time.time()
+    try:
+        docs = retriever.get_relevant_documents(question)
+    except AttributeError:
+        docs = retriever.invoke(question)
+    t_retrieval_ms = (time.time() - start_retrieval) * 1000
+
+    if not docs:
+        return "(No se encontraron fragmentos relevantes en los apuntes.)", t_retrieval_ms, 0.0, []
+
+    # Preparar documentos recuperados para métricas
+    retrieved_docs = []
+    for doc in docs[:3]:
+        retrieved_docs.append({
+            "file": doc.metadata.get("source", "desconocido"),
+            "page": doc.metadata.get("page", "?"),
+            "score": 0.0  # ChromaDB no siempre expone scores, puedes agregarlo si está disponible
+        })
+
+    context = "\n---\n".join([d.page_content for d in docs[:3]])
+    cites = _format_citations(docs[:3])
+
+    llm = ChatOpenAI(model=model, temperature=0)
+    prompt = RAG_PROMPT.format(question=question, context=context)
+
+    # Medir tiempo de generación
+    start_generation = time.time()
+    try:
+        response = llm.invoke(prompt)
+        answer = response.content
+    except Exception as e:
+        answer = f"(Error al generar respuesta: {e})"
+    t_generation_ms = (time.time() - start_generation) * 1000
+
+    return f"{answer}\n\n**Referencias:**\n{cites}", t_retrieval_ms, t_generation_ms, retrieved_docs
+
+
+def rag_a_tool(query: str, k: int = 4) -> Tuple[str, float, float, List[dict]]:
+    vs = _load_vs(DB_A_DIR)
+    retriever = vs.as_retriever(search_kwargs={"k": k})
+    return _answer_with_retriever(query, retriever)
+
+def rag_b_tool(query: str, k: int = 4) -> Tuple[str, float, float, List[dict]]:
+    vs = _load_vs(DB_B_DIR)
+    retriever = vs.as_retriever(search_kwargs={"k": k})
+    return _answer_with_retriever(query, retriever)
+
+def web_search_tool(query: str) -> Tuple[str, float, float, List[dict]]:
+    """
+    Retorna: (respuesta, t_retrieval_ms, t_generation_ms, retrieved_docs)
+    """
+    start_retrieval = time.time()
+    try:
+        from langchain_community.tools import DuckDuckGoSearchResults
+        search = DuckDuckGoSearchResults(max_results=5)
+        raw = search.run(query)
+
+        results = []
+        web_context = []
+        
+        for item in raw.split("title:"):
+            if "link:" in item and "snippet:" in item:
+                try:
+                    title_part = item.split("link:")[0].strip()
+                    link_part = item.split("link:")[1].split(", snippet:")[0].strip()
+                    snippet_part = item.split("snippet:")[-1].strip()
+                    
+                    results.append({
+                        "title": title_part,
+                        "link": link_part,
+                        "snippet": snippet_part
+                    })
+                    
+                    web_context.append(f"Título: {title_part}\nContenido: {snippet_part}")
+                except:
+                    continue
+        
+        t_retrieval_ms = (time.time() - start_retrieval) * 1000
+
+        if not results:
+            return "(No se encontraron resultados en la web.)", t_retrieval_ms, 0.0, []
+
+        # Generar respuesta con el LLM
+        start_generation = time.time()
+        llm = ChatOpenAI(model=CHAT_MODEL, temperature=0.3)
+        prompt = WEB_PROMPT.format(
+            question=query,
+            web_results="\n\n".join(web_context[:5])
+        )
+        
+        try:
+            answer = llm.invoke(prompt).content
+        except Exception as e:
+            answer = f"Se encontraron resultados, pero hubo un error al procesarlos: {e}"
+        
+        t_generation_ms = (time.time() - start_generation) * 1000
+
+        refs = "\n\n**Referencias Web:**\n"
+        for i, res in enumerate(results[:5], 1):
+            refs += f"[{i}] {res['title']}\n    🔗 {res['link']}\n"
+
+        # Docs para métricas
+        retrieved_docs = [{"file": "web", "page": 0, "score": 0.0} for _ in results[:5]]
+
+        return f"{answer}\n{refs}", t_retrieval_ms, t_generation_ms, retrieved_docs
+
+    except Exception as e:
+        return f"(Error al realizar la búsqueda web: {e})", 0.0, 0.0, []
+
+
+
+
+--------------------------------------------------------------------------------
+ARCHIVO: app\settings.py
+--------------------------------------------------------------------------------
+
+import os
+
+BASE_DIR = os.path.dirname(__file__)
+DATA_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "data"))
+
+DB_A_DIR = os.path.join(BASE_DIR, "chroma_ragA")
+DB_B_DIR = os.path.join(BASE_DIR, "chroma_ragB")
+
+EMBED_MODEL = "text-embedding-3-small"
+CHAT_MODEL = "gpt-3.5-turbo-0125"  # Cambiado según recomendación de la tarea
+
+CHUNK_SIZE = 800
+CHUNK_OVERLAP = 120
+TOKENS_PER_CHUNK = 180
+TOKENS_OVERLAP = 30
+
+
