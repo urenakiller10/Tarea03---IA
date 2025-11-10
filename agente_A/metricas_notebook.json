@@ -1,0 +1,597 @@
+[
+  {
+    "run_id": "0314d5d7",
+    "timestamp": "2025-11-10T11:58:44.948071",
+    "agent_mode": "A",
+    "question_id": 1,
+    "question_text": "Que es un kernel en aprendizaje automatico?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 1274.6152877807617,
+    "t_generation_ms": 2157.676935195923,
+    "t_total_ms": 3432.2922229766846,
+    "tokens_in": 11,
+    "tokens_out": 209,
+    "retrieved_docs": [
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1,
+        "score": 0.0
+      },
+      {
+        "file": "1_Semana_AI_20250807_2.pdf",
+        "page": 2,
+        "score": 0.0
+      },
+      {
+        "file": "1_SEMANA_AI_20250807_1.pdf",
+        "page": 1,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1
+      },
+      {
+        "file": "1_Semana_AI_20250807_2.pdf",
+        "page": 2
+      },
+      {
+        "file": "1_SEMANA_AI_20250807_1.pdf",
+        "page": 1
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "El fragmento proporciona información sobre filtros o kernels en el contexto de la capa de convolución en redes neuronales convolucionales, donde se menciona que un kernel es una matriz bidimensional de números que transforma una imagen al deslizarse sobre ella. También se hace referencia a la aplicación de filtros para procesar imágenes y obtener diferentes resultados. Sin embargo, no se proporciona una definición explícita de qué es un kernel en aprendizaje automático.\n\nNo se encontró información explícita sobre qué es un kernel en aprendizaje automático en los fragmentos proporcionados.\n\n**Referencias:**\n[1] 10_SEMANA_AI_20251009_1.pdf, p.1 (Autor: Estudiante)\n[2] 1_Semana_AI_20250807_2.pdf, p.2 (Autor: Estudiante)\n[3] 1_SEMANA_AI_20250807_1.pdf, p.1 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "0314d5d7",
+    "timestamp": "2025-11-10T11:58:46.565886",
+    "agent_mode": "A",
+    "question_id": 2,
+    "question_text": "Cual es la formula de la similitud de coseno?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 575.17409324646,
+    "t_generation_ms": 590.4529094696045,
+    "t_total_ms": 1165.6270027160645,
+    "tokens_in": 14,
+    "tokens_out": 106,
+    "retrieved_docs": [
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1,
+        "score": 0.0
+      },
+      {
+        "file": "11_Semana_AI_20251014_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 2,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1
+      },
+      {
+        "file": "11_Semana_AI_20251014_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 2
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "La fórmula de la similitud de coseno no aparece en los fragmentos proporcionados.\n\n**Referencias:**\n[1] 10_SEMANA_AI_20251009_1.pdf, p.1 (Autor: Estudiante)\n[2] 11_Semana_AI_20251014_1.pdf, p.0 (Autor: Estudiante)\n[3] 10_SEMANA_AI_20251009_1.pdf, p.2 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "0314d5d7",
+    "timestamp": "2025-11-10T11:58:49.893317",
+    "agent_mode": "A",
+    "question_id": 3,
+    "question_text": "Como se calcula la distancia euclidiana entre dos vectores?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 310.2149963378906,
+    "t_generation_ms": 2540.982723236084,
+    "t_total_ms": 2851.1977195739746,
+    "tokens_in": 14,
+    "tokens_out": 211,
+    "retrieved_docs": [
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1,
+        "score": 0.0
+      },
+      {
+        "file": "11_Semana_AI_20251014_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 2,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "1_Semana_AI_20250807_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "1_SEMANA_AI_20250807_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1
+      },
+      {
+        "file": "11_Semana_AI_20251014_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 2
+      }
+    ],
+    "fidelity_binary": 0,
+    "citations_correct_ratio": 0.6,
+    "em_binary": 1,
+    "answer": "Para calcular la distancia euclidiana entre dos vectores, se puede utilizar la fórmula:\n\ndistancia = sqrt(sum((v1[i] - v2[i])^2) for i in range(len(v1)))\n\nDonde v1 y v2 son los dos vectores para los cuales se desea calcular la distancia euclidiana.\n\n**Referencias:**\n[2] 1_Semana_AI_20250807_2.pdf, p.0 (Autor: Estudiante)\n[3] 1_SEMANA_AI_20250807_1.pdf, p.0 (Autor: Estudiante)\n\n**Referencias:**\n[1] 10_SEMANA_AI_20251009_1.pdf, p.1 (Autor: Estudiante)\n[2] 11_Semana_AI_20251014_1.pdf, p.0 (Autor: Estudiante)\n[3] 10_SEMANA_AI_20251009_1.pdf, p.2 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "0314d5d7",
+    "timestamp": "2025-11-10T11:58:54.178981",
+    "agent_mode": "A",
+    "question_id": 4,
+    "question_text": "Da la forma canonica de la regresion lineal (variables, parametros y objetivo).",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 1223.6742973327637,
+    "t_generation_ms": 2608.8006496429443,
+    "t_total_ms": 3832.474946975708,
+    "tokens_in": 19,
+    "tokens_out": 273,
+    "retrieved_docs": [
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1,
+        "score": 0.0
+      },
+      {
+        "file": "11_Semana_AI_20251014_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "4_Semana_AI_20250828_2.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "1_Semana_AI_20250807_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "1_SEMANA_AI_20250807_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1
+      },
+      {
+        "file": "11_Semana_AI_20251014_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "4_Semana_AI_20250828_2.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 0,
+    "citations_correct_ratio": 0.6,
+    "em_binary": 1,
+    "answer": "La forma canónica de la regresión lineal incluye las siguientes variables, parámetros y objetivo:\n\nVariables: Las variables independientes (X) y la variable dependiente (Y).\nParámetros: Los coeficientes de regresión (β) que se ajustan para minimizar el error cuadrático medio.\nObjetivo: Minimizar la suma de los errores al cuadrado entre los valores observados y los valores predichos por el modelo de regresión lineal.\n\nNo se encontró información explícita sobre la forma canónica de la regresión lineal en los fragmentos proporcionados.\n\n**Referencias:**\n[2] 1_Semana_AI_20250807_2.pdf, p.0 (Autor: Estudiante)\n[3] 1_SEMANA_AI_20250807_1.pdf, p.0 (Autor: Estudiante)\n\n**Referencias:**\n[1] 10_SEMANA_AI_20251009_1.pdf, p.1 (Autor: Estudiante)\n[2] 11_Semana_AI_20251014_1.pdf, p.0 (Autor: Estudiante)\n[3] 4_Semana_AI_20250828_2.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "0314d5d7",
+    "timestamp": "2025-11-10T11:58:57.908835",
+    "agent_mode": "A",
+    "question_id": 5,
+    "question_text": "Explica brevemente descenso de gradiente y su objetivo.",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 312.5114440917969,
+    "t_generation_ms": 2951.2383937835693,
+    "t_total_ms": 3263.749837875366,
+    "tokens_in": 14,
+    "tokens_out": 249,
+    "retrieved_docs": [
+      {
+        "file": "4_SEMANA_AI_20250826_2.pdf",
+        "page": 2,
+        "score": 0.0
+      },
+      {
+        "file": "5_Semana_AI_20250902_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 3,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1
+      },
+      {
+        "file": "11_Semana_AI_20251014_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "4_SEMANA_AI_20250826_2.pdf",
+        "page": 2
+      },
+      {
+        "file": "5_Semana_AI_20250902_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 3
+      }
+    ],
+    "fidelity_binary": 0,
+    "citations_correct_ratio": 0.6,
+    "em_binary": 1,
+    "answer": "El descenso de gradiente es un método de optimización que consiste en ajustar los parámetros de un modelo matemático para minimizar una función de pérdida. Su objetivo es encontrar el punto mínimo de una función, avanzando en la dirección opuesta al gradiente de la función en cada paso. Este proceso se repite iterativamente hasta converger hacia el mínimo global o local de la función.\n\nNo se encontró información explícita sobre el descenso de gradiente en los fragmentos proporcionados.\n\n**Referencias:**\n[1] 10_SEMANA_AI_20251009_1.pdf, p.1 (Autor: Estudiante)\n[2] 11_Semana_AI_20251014_1.pdf, p.0 (Autor: Estudiante)\n\n**Referencias:**\n[1] 4_SEMANA_AI_20250826_2.pdf, p.2 (Autor: Estudiante)\n[2] 5_Semana_AI_20250902_1.pdf, p.0 (Autor: Estudiante)\n[3] 4_Semana_AI_20250828_1.pdf, p.3 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "0314d5d7",
+    "timestamp": "2025-11-10T11:59:00.461565",
+    "agent_mode": "A",
+    "question_id": 6,
+    "question_text": "Que es backpropagation y que papel juega la regla de la cadena?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 310.11199951171875,
+    "t_generation_ms": 1757.5733661651611,
+    "t_total_ms": 2067.68536567688,
+    "tokens_in": 17,
+    "tokens_out": 229,
+    "retrieved_docs": [
+      {
+        "file": "10_SEMANA_AI_20251007_1.pdf",
+        "page": 1,
+        "score": 0.0
+      },
+      {
+        "file": "9_Semana_AI_20251002_2.pdf",
+        "page": 3,
+        "score": 0.0
+      },
+      {
+        "file": "9_SEMANA_AI_20251002_1.pdf",
+        "page": 6,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "10_SEMANA_AI_20251009_1.pdf",
+        "page": 1
+      },
+      {
+        "file": "11_Semana_AI_20251014_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "10_SEMANA_AI_20251007_1.pdf",
+        "page": 1
+      },
+      {
+        "file": "9_Semana_AI_20251002_2.pdf",
+        "page": 3
+      },
+      {
+        "file": "9_SEMANA_AI_20251002_1.pdf",
+        "page": 6
+      }
+    ],
+    "fidelity_binary": 0,
+    "citations_correct_ratio": 0.6,
+    "em_binary": 1,
+    "answer": "Backpropagation es un algoritmo que permite calcular cuánto contribuye cada peso al error final de la red neuronal, actualizando los parámetros en dirección opuesta a la propagación hacia adelante. Es esencial para que la red aprenda y mejore su rendimiento durante el entrenamiento.\n\nNo se encontró información explícita sobre el papel de la regla de la cadena en los fragmentos proporcionados.\n\n**Referencias:**\n[1] 10_SEMANA_AI_20251009_1.pdf, p.1 (Autor: Estudiante)\n[2] 11_Semana_AI_20251014_1.pdf, p.0 (Autor: Estudiante)\n\n**Referencias:**\n[1] 10_SEMANA_AI_20251007_1.pdf, p.1 (Autor: Estudiante)\n[2] 9_Semana_AI_20251002_2.pdf, p.3 (Autor: Estudiante)\n[3] 9_SEMANA_AI_20251002_1.pdf, p.6 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "0314d5d7",
+    "timestamp": "2025-11-10T11:59:05.007144",
+    "agent_mode": "A",
+    "question_id": 7,
+    "question_text": "Que supuestos tipicos se hacen en regresion lineal y por que importan?",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 381.70528411865234,
+    "t_generation_ms": 3703.065872192383,
+    "t_total_ms": 4084.771156311035,
+    "tokens_in": 19,
+    "tokens_out": 284,
+    "retrieved_docs": [
+      {
+        "file": "5_Semana_AI_20250902_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 3,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "10_SEMANA_AI_20251007_1.pdf",
+        "page": 1
+      },
+      {
+        "file": "9_Semana_AI_20251002_2.pdf",
+        "page": 3
+      },
+      {
+        "file": "9_SEMANA_AI_20251002_1.pdf",
+        "page": 6
+      },
+      {
+        "file": "5_Semana_AI_20250902_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 3
+      }
+    ],
+    "fidelity_binary": 0,
+    "citations_correct_ratio": 0.5,
+    "em_binary": 1,
+    "answer": "Los supuestos típicos en regresión lineal incluyen la linealidad de la relación entre las variables predictoras y la variable respuesta, la ausencia de datos atípicos y la no colinealidad. Estos supuestos son importantes porque si no se cumplen, el modelo de regresión lineal puede no ser adecuado y los resultados pueden ser sesgados o poco confiables. \n\nNo se encontró información explícita sobre los supuestos típicos en regresión lineal en los fragmentos proporcionados.\n\n**Referencias:**\n[1] 10_SEMANA_AI_20251007_1.pdf, p.1 (Autor: Estudiante)\n[2] 9_Semana_AI_20251002_2.pdf, p.3 (Autor: Estudiante)\n[3] 9_SEMANA_AI_20251002_1.pdf, p.6 (Autor: Estudiante)\n\n**Referencias:**\n[1] 5_Semana_AI_20250902_1.pdf, p.0 (Autor: Estudiante)\n[2] 5_Semana_AI_20250904_1.pdf, p.0 (Autor: Estudiante)\n[3] 4_Semana_AI_20250828_1.pdf, p.3 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "0314d5d7",
+    "timestamp": "2025-11-10T11:59:07.028430",
+    "agent_mode": "A",
+    "question_id": 8,
+    "question_text": "Menciona dos riesgos comunes de usar RAG y como mitigarlos.",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 638.1988525390625,
+    "t_generation_ms": 928.2393455505371,
+    "t_total_ms": 1566.4381980895996,
+    "tokens_in": 18,
+    "tokens_out": 113,
+    "retrieved_docs": [
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 3,
+        "score": 0.0
+      },
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "4_Semana_AI_20250828_1.pdf",
+        "page": 3
+      },
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "No se encontró información explícita sobre los riesgos comunes de usar RAG y cómo mitigarlos en los fragmentos proporcionados.\n\n**Referencias:**\n[1] 7_Semana_AI_20250916_2.pdf, p.0 (Autor: Estudiante)\n[2] 4_Semana_AI_20250828_1.pdf, p.3 (Autor: Estudiante)\n[3] 5_Semana_AI_20250904_1.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "0314d5d7",
+    "timestamp": "2025-11-10T11:59:09.977282",
+    "agent_mode": "A",
+    "question_id": 9,
+    "question_text": "Da un ejemplo donde coseno y euclidiana ordenen distinto un par de vectores.",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 338.2422924041748,
+    "t_generation_ms": 2126.8391609191895,
+    "t_total_ms": 2465.0814533233643,
+    "tokens_in": 20,
+    "tokens_out": 114,
+    "retrieved_docs": [
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "10_SEMANA_AI_20251007_1.pdf",
+        "page": 1,
+        "score": 0.0
+      },
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "10_SEMANA_AI_20251007_1.pdf",
+        "page": 1
+      },
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "No se encontró información sobre un ejemplo donde coseno y euclidiana ordenen distinto un par de vectores en los fragmentos proporcionados.\n\n**Referencias:**\n[1] 7_Semana_AI_20250916_2.pdf, p.0 (Autor: Estudiante)\n[2] 10_SEMANA_AI_20251007_1.pdf, p.1 (Autor: Estudiante)\n[3] 5_Semana_AI_20250904_1.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "0314d5d7",
+    "timestamp": "2025-11-10T11:59:13.465797",
+    "agent_mode": "A",
+    "question_id": 10,
+    "question_text": "Cita textualmente una definicion corta de espacio de caracteristicas (archivo y pagina).",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 1220.8664417266846,
+    "t_generation_ms": 1794.062614440918,
+    "t_total_ms": 3014.9290561676025,
+    "tokens_in": 20,
+    "tokens_out": 186,
+    "retrieved_docs": [
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "10_SEMANA_AI_20251007_1.pdf",
+        "page": 1
+      },
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "5_Semana_AI_20250904_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 0,
+    "citations_correct_ratio": 0.8333333333333334,
+    "em_binary": 1,
+    "answer": "No se encontró una definición corta de espacio de características en los fragmentos proporcionados.\n\n**Referencias:**\n[1] 7_Semana_AI_20250916_2.pdf, p.0 (Autor: Estudiante)\n[2] 10_SEMANA_AI_20251007_1.pdf, p.1 (Autor: Estudiante)\n[3] 5_Semana_AI_20250904_1.pdf, p.0 (Autor: Estudiante)\n\n**Referencias:**\n[1] 5_Semana_AI_20250904_1.pdf, p.0 (Autor: Estudiante)\n[2] 7_Semana_AI_20250916_2.pdf, p.0 (Autor: Estudiante)\n[3] 7_Semana_AI_20250916_2.pdf, p.0 (Autor: Estudiante)"
+  },
+  {
+    "run_id": "0314d5d7",
+    "timestamp": "2025-11-10T11:59:14.939355",
+    "agent_mode": "A",
+    "question_id": 11,
+    "question_text": "Aparece en los apuntes kernel trick? Si si, citalo; si no, dilo sin inventar.",
+    "web_allowed": false,
+    "web_used": false,
+    "t_retrieval_ms": 338.5355472564697,
+    "t_generation_ms": 671.5531349182129,
+    "t_total_ms": 1010.0886821746826,
+    "tokens_in": 27,
+    "tokens_out": 103,
+    "retrieved_docs": [
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "6_Semana_AI_20250911_1.pdf",
+        "page": 0,
+        "score": 0.0
+      },
+      {
+        "file": "6_Semana_AI_20250909_2-220676337.pdf",
+        "page": 0,
+        "score": 0.0
+      }
+    ],
+    "cited_docs": [
+      {
+        "file": "7_Semana_AI_20250916_2.pdf",
+        "page": 0
+      },
+      {
+        "file": "6_Semana_AI_20250911_1.pdf",
+        "page": 0
+      },
+      {
+        "file": "6_Semana_AI_20250909_2-220676337.pdf",
+        "page": 0
+      }
+    ],
+    "fidelity_binary": 1,
+    "citations_correct_ratio": 1.0,
+    "em_binary": 1,
+    "answer": "No se encontró información sobre el kernel trick en los fragmentos proporcionados.\n\n**Referencias:**\n[1] 7_Semana_AI_20250916_2.pdf, p.0 (Autor: Estudiante)\n[2] 6_Semana_AI_20250911_1.pdf, p.0 (Autor: Estudiante)\n[3] 6_Semana_AI_20250909_2-220676337.pdf, p.0 (Autor: Estudiante)"
+  }
+]

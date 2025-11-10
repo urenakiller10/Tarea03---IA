@@ -1,0 +1,12 @@
+run_id,timestamp,agent_mode,question_id,question_text,web_allowed,web_used,t_retrieval_ms,t_generation_ms,t_total_ms,tokens_in,tokens_out,retrieved_docs,cited_docs,fidelity_binary,citations_correct_ratio,em_binary
+267088d7,2025-11-10T12:45:48.279930,B,1,Que es un kernel en aprendizaje automatico?,False,False,914.0582084655762,0.0,914.0582084655762,11,15,[],[],0,0.0,0
+267088d7,2025-11-10T12:45:49.614401,B,2,Cual es la formula de la similitud de coseno?,False,False,873.9502429962158,0.0,873.9502429962158,14,15,[],[],0,0.0,1
+267088d7,2025-11-10T12:45:50.363846,B,3,Como se calcula la distancia euclidiana entre dos vectores?,False,False,290.0054454803467,0.0,290.0054454803467,14,15,[],[],0,0.0,0
+267088d7,2025-11-10T12:45:51.150303,B,4,"Da la forma canonica de la regresion lineal (variables, parametros y objetivo).",False,False,315.05346298217773,0.0,315.05346298217773,19,15,[],[],0,0.0,0
+267088d7,2025-11-10T12:45:52.070387,B,5,Explica brevemente descenso de gradiente y su objetivo.,False,False,453.4010887145996,0.0,453.4010887145996,14,15,[],[],0,0.0,1
+267088d7,2025-11-10T12:45:53.173641,B,6,Que es backpropagation y que papel juega la regla de la cadena?,False,False,647.9446887969971,0.0,647.9446887969971,17,15,[],[],0,0.0,0
+267088d7,2025-11-10T12:45:54.192496,B,7,Que supuestos tipicos se hacen en regresion lineal y por que importan?,False,False,563.5941028594971,0.0,563.5941028594971,19,15,[],[],0,0.0,0
+267088d7,2025-11-10T12:45:55.118286,B,8,Menciona dos riesgos comunes de usar RAG y como mitigarlos.,False,False,471.8043804168701,0.0,471.8043804168701,18,15,[],[],0,0.0,1
+267088d7,2025-11-10T12:45:55.969241,B,9,Da un ejemplo donde coseno y euclidiana ordenen distinto un par de vectores.,False,False,390.76685905456543,0.0,390.76685905456543,20,15,[],[],0,0.0,1
+267088d7,2025-11-10T12:45:56.862536,B,10,Cita textualmente una definicion corta de espacio de caracteristicas (archivo y pagina).,False,False,422.865629196167,0.0,422.865629196167,20,15,[],[],0,0.0,1
+267088d7,2025-11-10T12:45:57.597686,B,11,"Aparece en los apuntes kernel trick? Si si, citalo; si no, dilo sin inventar.",False,False,293.31135749816895,0.0,293.31135749816895,27,15,[],[],0,0.0,0
